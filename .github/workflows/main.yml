@@ -1,4 +1,4 @@
-name: Node Build
+name: Basic Workflow
 
 on:
   push:
@@ -12,15 +12,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        working-directory: ./project
-        run: npm install
-
-      - name: Build
-        working-directory: ./project
-        run: npm run build
+      - name: Echo
+        run: echo "Nothing to build yet"
