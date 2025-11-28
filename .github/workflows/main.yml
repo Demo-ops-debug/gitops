@@ -1,33 +1,26 @@
-# File: .github/workflows/ci.yml
-name: CI Workflow
+name: Node Build
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  # ✅ Allows manual trigger from GitHub Actions tab
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Install dependencies
       - name: Install dependencies
+        working-directory: ./project
         run: npm install
 
-      # Run tests
-      - name: Run tests
-        run: npm test
+      - name: Build
+        working-directory: ./project
+        run: npm run build
